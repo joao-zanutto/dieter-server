@@ -7,6 +7,11 @@ router.get('/', async (req, res, next) => {
 	res.json(data);
 });
 
+router.get('/daily', async (req, res, next) => {
+	const data = await stats.getDailyStats();
+	res.json(data);
+});
+
 router.post('/', async (req, res, next) => {
 	const createdStats = await stats.createStatsDay();
 	res.json(createdStats);

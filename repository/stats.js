@@ -22,6 +22,21 @@ repo.addFoodStats = async (foodStats) => {
 	}
 };
 
+repo.getDailyStats = async (foodStats) => {
+	const today = new Date();
+	const year = today.getFullYear();
+	const month = today.getMonth();
+	const day = today.getDate();
+
+	try {
+		const stats = await Stats.findOne({ year: year, month: month, day: day });
+
+		return stats;
+	} catch (error) {
+		return error;
+	}
+};
+
 repo.getStats = async () => {
 	try {
 		const stats = await Stats.find();
