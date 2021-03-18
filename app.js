@@ -13,9 +13,11 @@ mongoose.connect(process.env.DB_STRING, {
 });
 
 const foodsRoute = require('./routes/foods');
+const statsRoute = require('./routes/stats');
 const consumeRoute = require('./routes/consume');
 
 app.use('/foods/', foodsRoute);
+app.use('/stats/', statsRoute);
 app.use('/consume/', consumeRoute);
 
 app.listen(3010);

@@ -25,10 +25,6 @@ const FoodSchema = mongoose.Schema({
 		type: Number,
 		required: true,
 	},
-	fat: {
-		type: Number,
-		required: true,
-	},
 	dailyConsumed: {
 		type: Number,
 		default: 0,
