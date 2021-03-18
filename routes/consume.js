@@ -1,18 +1,18 @@
 const express = require('express');
-const Food = require('../models/Food');
+const foods = require('../repository/foods');
+const stats = require('../repository/stats');
 const router = express.Router();
 
 router.get('/:id', async (req, res, next) => {
-	try {
-		const targetFood = await Food.findById(req.params.id);
-		targetFood.dailyConsumed = targetFood.dailyConsumed + 1;
-
-		await targetFood.save();
-
-		res.json(targetFood);
-	} catch (error) {
-		res.json({ message: error });
-	}
+	const consumedFood = await foods.incrementFood(req.params.id);
+	foodData = {
+		cal: consumedFood.cal,
+		carb: consumedFood.carb,
+		prot: consumedFood.prot,
+		fat: consumedFood.fat,
+	};
+	const updatedStats = await stats.addFoodStats(foodData);
+	res.json(updatedStats);
 });
 
 module.exports = router;

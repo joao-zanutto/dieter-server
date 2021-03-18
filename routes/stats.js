@@ -1,25 +1,15 @@
 const express = require('express');
-const Stats = require('../models/Stats');
 const router = express.Router();
+const stats = require('../repository/stats');
 
 router.get('/', async (req, res, next) => {
-	try {
-		const stats = await Stats.find();
-		res.json(stats);
-	} catch (error) {
-		res.json({ message: error });
-	}
+	const data = await stats.getStats();
+	res.json(data);
 });
 
 router.post('/', async (req, res, next) => {
-	const stats = new Stats({});
-
-	try {
-		const savedStats = await stats.save();
-		res.json(savedStats);
-	} catch (error) {
-		res.json({ message: error });
-	}
+	const createdStats = await stats.createStatsDay();
+	res.json(createdStats);
 });
 
 module.exports = router;
