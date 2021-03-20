@@ -12,7 +12,8 @@ router.get('/:id', async (req, res, next) => {
 		fat: consumedFood.fat,
 	};
 	const updatedStats = await stats.addFoodStats(foodData);
-	res.json(updatedStats);
+	const foodList = await foods.getFoodList();
+	res.json({ foodList: foodList, stats: updatedStats });
 });
 
 module.exports = router;
