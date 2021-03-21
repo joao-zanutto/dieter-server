@@ -17,4 +17,9 @@ router.post('/', async (req, res, next) => {
 	res.json(createdStats);
 });
 
+router.delete('/today', async (req, res, next) => {
+	const response = await stats.deleteToday();
+	res.json(response);
+});
+
 module.exports = router;

@@ -46,4 +46,16 @@ repo.decrementFood = async (id) => {
 	}
 };
 
+repo.resetDailyQuantity = async () => {
+	try {
+		const foodList = await Foods.find();
+		foodList.forEach((food) => {
+			food.dailyConsumed = 0;
+			food.save();
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 module.exports = repo;

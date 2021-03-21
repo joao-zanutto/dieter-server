@@ -57,4 +57,19 @@ repo.createStatsDay = async () => {
 	}
 };
 
+repo.deleteToday = async () => {
+	const today = new Date();
+	const year = today.getFullYear();
+	const month = today.getMonth();
+	const day = today.getDate();
+
+	const stats = await Stats.findOne({ year: year, month: month, day: day });
+	try {
+		const response = await stats.delete();
+		return response;
+	} catch (error) {
+		return { message: error };
+	}
+};
+
 module.exports = repo;
