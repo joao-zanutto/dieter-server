@@ -1,3 +1,4 @@
+const Food = require('../models/Food');
 const Foods = require('../models/Food');
 
 let repo = {};
@@ -15,8 +16,10 @@ repo.createFood = async (foodData) => {
 	const food = new Foods({ ...foodData });
 
 	try {
-		const savedFood = await food.save();
-		return savedFood;
+		await food.save();
+		const updatedList = await Foods.find();
+
+		return updatedList;
 	} catch (error) {
 		return { message: error };
 	}

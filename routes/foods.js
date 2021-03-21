@@ -7,8 +7,8 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-	const savedFood = await foods.createFood(req.body);
-	res.json(savedFood);
+	const updatedList = await foods.createFood(req.body);
+	res.json(updatedList);
 });
 
 module.exports = router;
