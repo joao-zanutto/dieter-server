@@ -3,7 +3,7 @@ const stats = require('../repository/stats');
 const foods = require('../repository/foods');
 
 cron.schedule(
-	'01 00 * * *',
+	'00 05 * * *',
 	() => {
 		console.log('creating stats');
 		stats.createStatsDay();

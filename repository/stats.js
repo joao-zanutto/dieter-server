@@ -22,7 +22,7 @@ repo.addFoodStats = async (foodStats) => {
 	}
 };
 
-repo.getDailyStats = async (foodStats) => {
+repo.getDailyStats = async () => {
 	const today = new Date();
 	const year = today.getFullYear();
 	const month = today.getMonth();
